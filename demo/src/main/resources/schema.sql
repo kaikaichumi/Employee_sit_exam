@@ -1,0 +1,14 @@
+--DROP TABLE IF EXISTS SeatingChart;
+create table IF NOT EXISTS Seating_Chart (
+    FLOOR_SEAT_SEQ IDENTITY PRIMARY KEY,
+    FLOOR_NO BIGINT,
+    SEAT_NO BIGINT
+);
+--CREATE FLOOR_SEAT_SEQ ON SeatingChart(FLOOR_SEAT_SEQ)
+--DROP TABLE IF EXISTS Employee;
+create table IF NOT EXISTS Employee (
+    EMP_ID varchar(8) PRIMARY KEY,
+    NAME varchar(255),
+    EMAIL varchar(255),
+    FLOOR_SEAT_SEQ BIGINT REFERENCES Seating_Chart(FLOOR_SEAT_SEQ)
+);

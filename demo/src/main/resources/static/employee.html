@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Control</title>
+</head>
+<body>
+
+
+<h2>Employee Upload</h2>
+
+<label for="id">emp_ID</label><input id="id" type="text" name="id" /><br><br>
+<label for="empName">emp_name</label><input id="empName" type="text" name="empName" /><br><br>
+<label for="empEmail">emp_email</label><input id="empEmail" type="text" name="empEmail" /><br><br>
+<button id="upload-button" onclick="uploadFile()"> Upload </button>
+
+<script>
+    async function uploadFile() {
+        let formData = new FormData();
+        formData.append("id", id.value);
+        formData.append("name", empName.value);
+        formData.append("mail", empEmail.value);
+        await fetch('http://localhost:8090/employee', {
+            method: "POST",
+            body: formData
+        }).then(result => result.text())
+            .then(text => alert(text));
+    }
+</script>
+
+</body>

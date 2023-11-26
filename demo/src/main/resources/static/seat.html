@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Seat Control</title>
+</head>
+<body>
+
+<h2>Seat Upload</h2>
+
+<label for="floor">seat Floor</label><input id="floor" type="text" name="floor" /><br><br>
+<label for="seatNum">seat Number</label><input id="seatNum" type="text" name="seatNum" />
+<button id="upload-button" onclick="uploadFile()"> Upload </button>
+
+<script>
+    async function uploadFile() {
+        let formData = new FormData();
+        formData.append("floor", floor.value);
+        formData.append("seatNum", seatNum.value);
+        await fetch('http://localhost:8080/seat', {
+            method: "POST",
+            body: formData
+        }).then(result => result.text())
+            .then(text => alert(text));
+    }
+</script>
+
+</body>
+</html>
